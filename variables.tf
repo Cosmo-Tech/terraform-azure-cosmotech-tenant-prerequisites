@@ -81,6 +81,16 @@ variable "location" {
   default     = "West Europe"
 }
 
+variable "vnet_location" {
+  description = "The Azure location"
+  default     = "West Europe"  
+}
+
+variable "publicip_location" {
+  description = "The Azure location"
+  default     = "West Europe"  
+}
+
 variable "api_version_path" {
   description = "The API version path"
   type        = string

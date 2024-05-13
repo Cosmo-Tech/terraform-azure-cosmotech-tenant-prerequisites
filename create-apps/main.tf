@@ -8,7 +8,7 @@ resource "azuread_application" "platform" {
   identifier_uris  = var.identifier_uri != "" ? [var.identifier_uri] : [var.identifier_uri]
   logo_image       = filebase64(var.image_path)
   sign_in_audience = var.audience
-
+  owners           = data.azuread_users.owners.object_ids
   tags = [
     "HideApp",
     "WindowsAzureActiveDirectoryIntegratedApp",
@@ -151,6 +151,7 @@ resource "azuread_application" "swagger" {
       access_token_issuance_enabled = true
     }
   }
+
 }
 
 resource "azuread_service_principal" "swagger" {
@@ -290,21 +291,14 @@ resource "azuread_service_principal" "babylon" {
   depends_on = [azuread_service_principal.swagger]
 }
 
-# resource "azurerm_role_assignment" "rg_owner" {
-#   scope                = azurerm_resource_group.tenant_rg.id
-#   role_definition_name = "Owner"
-#   principal_id         = azuread_group.platform_group.object_id
-# }
+resource "azurerm_role_assignment" "tenant_contributor" {
+  scope                = var.tenant_resource_group_object.id
+  role_definition_name = "Contributor"
+  principal_id         = azuread_service_principal.platform.object_id
+}
 
-# resource "azurerm_role_assignment" "publicip_contributor" {
-#   scope                = azurerm_resource_group.tenant_rg.id
-#   role_definition_name = "Contributor"
-#   principal_id         = azuread_service_principal.network_adt.id
-# }
-
-# resource "azurerm_role_assignment" "publicip_owner" {
-#   scope                = var.platform_public_ip
-#   role_definition_name = "Owner"
-#   principal_id         = azuread_service_principal.platform.id
-# }
-
+resource "azurerm_role_assignment" "network_owner" {
+  scope                = var.tenant_resource_group_object.id
+  role_definition_name = "Owner"
+  principal_id         = azuread_service_principal.network_adt.object_id
+}

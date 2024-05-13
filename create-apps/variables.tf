@@ -128,3 +128,6 @@ variable "create_secret_powerbi" {
 variable "create_secret_babylon" {
   type    = bool
 }
+
+variable "tenant_resource_group_object" {
+}

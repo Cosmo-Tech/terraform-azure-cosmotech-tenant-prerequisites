@@ -4,7 +4,7 @@ variable "create_publicip" {
 variable "customer_name" {
   type = string
 }
-variable "location" {
+variable "publicip_location" {
   type = string
 }
 variable "project_name" {
