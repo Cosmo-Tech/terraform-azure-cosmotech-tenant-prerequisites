@@ -30,7 +30,7 @@ variable "project_name" {
   description = "The project name"
 }
 
-variable "location" {
+variable "vnet_location" {
   description = "The Azure location"
 }
 

@@ -13,7 +13,7 @@ locals {
 # Virtual Network
 resource "azurerm_virtual_network" "platform_vnet" {
   name                = local.vnetname
-  location            = var.location
+  location            = var.vnet_location
   resource_group_name = var.vnet_resource_group
   address_space       = [var.vnet_iprange]
 
