@@ -93,7 +93,7 @@ resource "azuread_application_password" "platform_password" {
 }
 
 resource "azuread_application" "network_adt" {
-  display_name     = "${var.pre_name}Network ${var.network_resource_group}"
+  display_name     = "${var.pre_name}Network ${title(var.network_resource_group)}"
   logo_image       = filebase64(var.image_path)
   owners           = data.azuread_users.owners.object_ids
   sign_in_audience = "AzureADMyOrg"
