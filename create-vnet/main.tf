@@ -1,5 +1,5 @@
 locals {
-  vnetname     = var.vnet_name != "" ? var.vnet_name : substr("CosmoTech${var.customer_name}${var.project_name}${var.project_stage}VNet", 0, 80)
+  vnetname     = var.vnet_name != "" ? substr(var.vnet_name, 0, 80) : substr("CosmoTech${var.customer_name}${var.project_name}${var.project_stage}VNet", 0, 80)
   vnet_iprange = var.vnet_iprange != "" ? var.vnet_iprange : "10.21.0.0/16"
   tags = {
     vendor      = "cosmotech"

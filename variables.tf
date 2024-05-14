@@ -214,11 +214,6 @@ variable "user_app_role" {
   ]
 }
 
-variable "network_resource_group" {
-  description = "Existing Resource group which contain common platform resources"
-  type        = string
-}
-
 variable "tenant_resource_group" {
   description = "Resource group to create which will contain created Azure resources for this tenant"
   type        = string

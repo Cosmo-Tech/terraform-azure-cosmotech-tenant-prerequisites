@@ -14,7 +14,7 @@ module "create-apps" {
   user_app_role                = var.user_app_role
   tenant_namespace             = var.tenant_namespace
   tenant_resource_group        = var.tenant_resource_group
-  network_resource_group       = var.network_resource_group
+  network_resource_group       = var.vnet_resource_group
   create_restish               = var.create_restish
   create_powerbi               = var.create_powerbi
   create_babylon               = var.create_babylon
