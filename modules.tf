@@ -24,6 +24,7 @@ module "create-apps" {
   create_secret_powerbi        = var.create_secret_powerbi
   create_secret_babylon        = var.create_secret_babylon
   owner_list                   = var.owner_list
+  use_identifier_uri_appId     = var.use_identifier_uri_appId
   tenant_resource_group_object = azurerm_resource_group.tenant_rg
 }
 

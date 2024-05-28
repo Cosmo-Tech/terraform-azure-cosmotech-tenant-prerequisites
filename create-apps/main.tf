@@ -77,12 +77,34 @@ resource "azuread_application" "platform" {
   }
 }
 
+resource "azuread_application_identifier_uri" "example" {
+  count = var.use_identifier_uri_appId ? 1 : 0
+  application_id = azuread_application.platform.id
+  identifier_uri = "api://${azuread_application.platform.client_id}"
+}
+
 resource "azuread_service_principal" "platform" {
   client_id = azuread_application.platform.client_id
   # assignment required to secure Function Apps using thi App Registration as identity provider
   app_role_assignment_required = true
 
   tags = ["cosmotech", var.project_stage, var.customer_name, var.project_name, "HideApp", "WindowsAzureActiveDirectoryIntegratedApp", "terraformed"]
+}
+
+resource "azuread_application_api_access" "add_role_api" {
+  application_id = "/applications/${azuread_application.platform.object_id}"
+  api_client_id  = azuread_application.platform.client_id
+  role_ids       = ["bb49d61f-8b6a-4a19-b5bd-06a29d6b8e60"]
+
+  depends_on = [azuread_service_principal.platform]
+}
+
+resource "azuread_app_role_assignment" "add_user_admin_platform" {
+  app_role_id         = azuread_service_principal.platform.app_role_ids["Platform.Admin"]
+  for_each = toset(data.azuread_users.owners.object_ids)
+  principal_object_id = each.key
+  resource_object_id  = azuread_service_principal.platform.object_id
+  depends_on = [ azuread_application_api_access.add_role_api ]
 }
 
 resource "azuread_application_password" "platform_password" {

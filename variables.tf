@@ -83,12 +83,12 @@ variable "location" {
 
 variable "vnet_location" {
   description = "The Azure location"
-  default     = "West Europe"  
+  default     = "West Europe"
 }
 
 variable "publicip_location" {
   description = "The Azure location"
-  default     = "West Europe"  
+  default     = "West Europe"
 }
 
 variable "api_version_path" {
@@ -245,8 +245,8 @@ variable "vnet_resource_group" {
 
 variable "vnet_iprange" {
   description = "The Virtual Network IP range. Minimum /26 NetMaskLength"
-  type    = string
-  default = "10.21.0.0/16"
+  type        = string
+  default     = "10.21.0.0/16"
 }
 
 variable "subnet_iprange" {
@@ -280,7 +280,7 @@ variable "tenant_namespace" {
 }
 
 variable "create_publicip" {
-  type = bool
+  type    = bool
   default = false
 }
 
@@ -289,7 +289,7 @@ variable "publicip_resource_group" {
 }
 
 variable "create_dns_record" {
-  type = bool
+  type    = bool
   default = false
 }
 
@@ -318,7 +318,7 @@ variable "create_webapp" {
 }
 
 variable "create_platform_vnet" {
-  type = bool
+  type    = bool
   default = false
 }
 
@@ -343,6 +343,11 @@ variable "create_secret_babylon" {
 }
 
 variable "create_secret_platform" {
+  type    = bool
+  default = false
+}
+
+variable "use_identifier_uri_appId" {
   type    = bool
   default = false
 }

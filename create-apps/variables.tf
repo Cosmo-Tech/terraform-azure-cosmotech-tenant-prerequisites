@@ -131,3 +131,7 @@ variable "create_secret_babylon" {
 
 variable "tenant_resource_group_object" {
 }
+
+variable "use_identifier_uri_appId" {
+  type = bool
+}
