@@ -5,7 +5,6 @@ data "azuread_users" "owners" {
 # Azure AD
 resource "azuread_application" "platform" {
   display_name     = "${var.pre_name}Platform${var.post_name}"
-  identifier_uris  = var.identifier_uri != "" ? [var.identifier_uri] : [var.identifier_uri]
   logo_image       = filebase64(var.image_path)
   sign_in_audience = var.audience
   owners           = data.azuread_users.owners.object_ids
@@ -78,9 +77,8 @@ resource "azuread_application" "platform" {
 }
 
 resource "azuread_application_identifier_uri" "example" {
-  count = var.use_identifier_uri_appId ? 1 : 0
   application_id = azuread_application.platform.id
-  identifier_uri = "api://${azuread_application.platform.client_id}/${var.tenant_namespace}"
+  identifier_uri = var.use_identifier_uri_appId ? "api://${azuread_application.platform.client_id}/${var.tenant_namespace}" : var.identifier_uri
 }
 
 resource "azuread_service_principal" "platform" {
@@ -292,8 +290,8 @@ resource "azuread_application" "babylon" {
     resource_app_id = azuread_service_principal.platform.client_id # Cosmo Tech Platform
 
     resource_access {
-      id   = "6332363e-bcba-4c4a-a605-c25f23117400" # platform
-      type = "Scope"
+      id   = "bb49d61f-8b6a-4a19-b5bd-06a29d6b8e60" # platform impersonate
+      type = "Role"
     }
   }
 

@@ -26,6 +26,7 @@ variable "platform_url" {
 variable "identifier_uri" {
   description = "The platform identifier uri"
   type        = string
+  default = ""
 }
 
 variable "project_stage" {

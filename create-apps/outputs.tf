@@ -79,6 +79,6 @@ output "out_babylon_secret" {
   sensitive = true
 }
 
-output "out_cosmos_api_uri" {
-  value = var.identifier_uri
+output "out_cosmo_api_uri" {
+  value = var.use_identifier_uri_appId ? "api://${azuread_application.platform.client_id}/${var.tenant_namespace}" : var.identifier_uri
 }

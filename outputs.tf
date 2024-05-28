@@ -79,6 +79,6 @@ output "out_babylon_secret" {
   sensitive = true
 }
 
-output "out_cosmos_api_uri" {
-  value = var.identifier_uri
+output "out_cosmo_api_uri" {
+  value = module.create-apps.out_cosmo_api_uri
 }
