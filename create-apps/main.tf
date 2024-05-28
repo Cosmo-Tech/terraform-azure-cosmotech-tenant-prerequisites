@@ -80,7 +80,7 @@ resource "azuread_application" "platform" {
 resource "azuread_application_identifier_uri" "example" {
   count = var.use_identifier_uri_appId ? 1 : 0
   application_id = azuread_application.platform.id
-  identifier_uri = "api://${azuread_application.platform.client_id}"
+  identifier_uri = "api://${azuread_application.platform.client_id}/${var.tenant_namespace}"
 }
 
 resource "azuread_service_principal" "platform" {
