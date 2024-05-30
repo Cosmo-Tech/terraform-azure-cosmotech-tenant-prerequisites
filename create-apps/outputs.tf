@@ -3,7 +3,7 @@ output "out_platform_name" {
 }
 
 output "out_platform_client_id" {
-  value = azuread_application.platform.object_id
+  value = azuread_application.platform.client_id
 }
 
 output "out_platform_sp_object_id" {
@@ -20,7 +20,7 @@ output "out_nerwork_name" {
 }
 
 output "out_network_client_id" {
-  value = azuread_application.network_adt.object_id
+  value = azuread_application.network_adt.client_id
 }
 
 output "out_network_sp_object_id" {
@@ -37,7 +37,7 @@ output "out_swagger_name" {
 }
 
 output "out_swagger_client_id" {
-  value = azuread_application.swagger.object_id
+  value = azuread_application.swagger.client_id
 }
 
 output "out_restish_name" {
@@ -45,7 +45,7 @@ output "out_restish_name" {
 }
 
 output "out_restish_client_id" {
-  value = var.create_restish ? azuread_application.restish.0.id : null
+  value = var.create_restish ? azuread_application.restish.0.client_id : null
 }
 
 output "out_restish_password" {
@@ -58,7 +58,7 @@ output "out_powerbi_name" {
 }
 
 output "out_powerbi_client_id" {
-  value = var.create_powerbi ? azuread_application.powerbi.0.id : null
+  value = var.create_powerbi ? azuread_application.powerbi.0.client_id : null
 }
 
 output "out_powerbi_password" {
@@ -67,7 +67,7 @@ output "out_powerbi_password" {
 }
 
 output "out_babylon_client_id" {
-  value = var.create_babylon ? azuread_application.babylon.0.id : null
+  value = var.create_babylon ? azuread_application.babylon.0.client_id : null
 }
 
 output "out_babylon_sp_ojbect_id" {
@@ -80,5 +80,5 @@ output "out_babylon_secret" {
 }
 
 output "out_cosmo_api_uri" {
-  value = var.use_identifier_uri_appId ? "api://${azuread_application.platform.client_id}/${var.tenant_namespace}" : var.identifier_uri
+  value = var.use_identifier_uri_appId ? "api://${azuread_application.platform.client_id}" : var.identifier_uri
 }
