@@ -82,3 +82,11 @@ output "out_babylon_secret" {
 output "out_cosmo_api_uri" {
   value = module.create-apps.out_cosmo_api_uri
 }
+
+output "out_fqdn" {
+  value = var.fqdn
+}
+
+output "out_tenant_id" {
+  value = var.tenant_id
+}
