@@ -135,3 +135,7 @@ variable "tenant_resource_group_object" {
 variable "use_identifier_uri_appId" {
   type = bool
 }
+
+variable "token_version" {
+  type = number
+}
