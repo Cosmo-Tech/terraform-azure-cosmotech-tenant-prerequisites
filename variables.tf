@@ -352,3 +352,12 @@ variable "use_identifier_uri_appId" {
   type    = bool
   default = false
 }
+
+variable "token_version" {
+  type = number
+  default = 2
+}
+
+variable "fqdn" {
+  type = string
+}

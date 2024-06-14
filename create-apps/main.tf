@@ -39,7 +39,7 @@ resource "azuread_application" "platform" {
   }
 
   api {
-    requested_access_token_version = 2
+    requested_access_token_version = var.token_version
     oauth2_permission_scope {
       admin_consent_description  = "Allow the application to use the Cosmo Tech Platform with user account"
       admin_consent_display_name = "Cosmo Tech Platform Impersonate"
