@@ -162,7 +162,7 @@ resource "azuread_application" "swagger" {
 
   single_page_application {
     redirect_uris = [
-      "${var.platform_url}/cosmotech-api/${var.tenant_namespace}${var.api_version_path}/swagger-ui/index.html"
+      "${var.platform_url}/cosmotech-api/${var.tenant_namespace}${var.api_version_path}/swagger-ui/oauth2-redirect.html"
     ]
   }
 
